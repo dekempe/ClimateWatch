@@ -1,0 +1,38 @@
+body {
+	height: 100%;
+	width: 100%;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 18px;
+}
+
+
+.header{
+	margin-top: 0px;
+	padding-top: 0.5%;
+	padding-bottom: 0.5%;
+	color: #FFFFFF;
+	background-color: #089DE3;
+	box-shadow: 0 1px 6px #2d2d2d;
+}
+
+.tile {
+	color: #00000000;
+	margin-left: 80%;
+	width: 60%;
+}
+
+.tile p {
+	margin-left: 10px;
+	font-size: 18px;
+}
+
+img {
+	max-width: 100%; 
+	height: auto;
+}
+
+.row {
+	width: 100%;
+	overflow: hidden;
+}
+

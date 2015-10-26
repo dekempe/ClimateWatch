@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<title>Climate Watch</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	  	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
+	    <script src="http://code.highcharts.com/stock/highstock.js"></script>
+	    <script src="../src/highcharts-ng.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="style.css">
+
+		<script src="../app/models/WeatherStation.js"></script>
+		<script src="../app/app.js"></script>
+		<script src="../app/controllers/WeatherStationsController.js"></script>
+		<script src="../app/controllers/statisticsController.js"></script>
+
+	</head>
+	<body ng-app="app" >
+		 <div class="weatherstations" ng-controller="weatherStationsController"  > 
+	 		<h1 class="header" align="center" ng-click="toggleVisible()">Weather stations</h1>
+	 		<div id="collapse1" class="{{weatherstationsVisible}}">
+		 		<div ng-repeat="weatherstation in weatherstations">
+				<span ng-switch="" on="$index % 5">
+					<div class="row" ng-switch-when="0">
+						<div class="col-xs-2 col-sm-2 col-md-2" ng-repeat="n in [0, 1, 2, 3, 4]" ng-show="weatherstations[$parent.$index+n]">
+							<div class="tile" >
+								<img class="img-responsive" src="{{weatherstations[$parent.$index+n].img}}" >
+				          		<p>Location: {{ weatherstations[$parent.$index+n].location }}</p>
+				          		<p>Temperature: {{ weatherstations[$parent.$index+n].temperature }}&#8451</p>
+				          		<p>humidity: {{ weatherstations[$parent.$index+n].humidity }}%</p>
+							</div>
+						</div>
+					</div>
+				</span>
+				</div>
+			</div>
+     	</div>
+
+     	<div class="statistics"  ng-controller="statisticsController">
+	 		<h1 class="header" align="center" ng-click="toggleMonthlyVisible()">Montly Statistics</h1>
+	 		<div id="collapse2" class={{monthlyStatisticsVisible}}>
+	 			
+	 			<div>
+	 				<select ng-init="object = selectOptions[0]" 
+			        ng-model="object" 
+			        ng-options="option.name for option in selectOptions" ng-change="loadAverageTempYearContainer(option.name)"></select>
+	 			</div>
+
+
+		 			<div id="averagetempYearChart"style="min-width: 310px; height: 400px; margin: 0 auto" ></div>
+	 				<div id="averageHumidytyYearChart" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	 		</div>
+
+	 		<h1 class="header" align="center" ng-click="toggleLiveVisible()">Todays Statistics</h1>
+	 		<div id="collapse2" class={{liveStatisticsVisible}}>
+ 				<div id="liveContainer" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+ 			</div>
+     	</div>
+
+	</body> 
+</html>
